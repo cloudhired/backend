@@ -20,9 +20,53 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson"
+    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
+
+	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = client.Ping(context.TODO(), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(err)
+
+	collection := client.Database("cloudhired").Collection("users")
+	findOptions := options.Find()
+	findOptions.SetLimit(10)
+	cur, err := collection.Find(context.TODO(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var results []bson.M
+	if err = cur.All(context.TODO(), &results); err != nil {
+		log.Fatal(err)
+	}
+	for _, result := range results {
+		fmt.Println(result)
+	}
+
+	for cur.Next(context.TODO()) {
+		var elem bson.M
+		fmt.Println(elem)
+	}
+
+
+
+
+
 	http.HandleFunc("/", handle)
 	port := os.Getenv("PORT")
 	if port == "" {
