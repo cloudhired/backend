@@ -27,7 +27,7 @@ import (
     "go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func main() {
+func helloworld() {
 
 	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
 	client, err := mongo.Connect(context.TODO(), clientOptions)
