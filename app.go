@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 
 	"github.com/julienschmidt/httprouter"
-	"./dao"
-	"./models"
+	"github.com/gaomengen/cloudhired-backend/dao"
+	"github.com/gaomengen/cloudhired-backend/models"
 )
 
 var dao = UsersDao{}
