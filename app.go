@@ -1,11 +1,11 @@
 package main
 
 import (
+	"cloudhired.com/api/handler"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
-	"cloudhired.com/api/handler"
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
