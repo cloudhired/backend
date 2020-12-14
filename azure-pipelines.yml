@@ -8,10 +8,9 @@ steps:
 - task: GoTool@0
   inputs:
     version: '1.15.6'
-- task: Go@0
+- task: CmdLine@2
   inputs:
-    command: 'custom'
-    customCommand: 'mod vendor'
+    script: 'go mod vendor'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 - task: Go@0
   inputs:
