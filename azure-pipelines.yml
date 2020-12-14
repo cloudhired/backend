@@ -17,6 +17,9 @@ steps:
   inputs:
     command: 'build'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: CmdLine@2
+  inputs:
+    script: 'ls /home/vsts/go/src/'
 - task: CopyFiles@2
   inputs:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
