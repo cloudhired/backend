@@ -9,3 +9,4 @@ type User struct {
 	FullName		string				`bson:"fullname" json:"fullname"`
 	FirstName		string				`bson:"fname" json:"fname"`		
 }
+
