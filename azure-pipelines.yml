@@ -1,5 +1,5 @@
 trigger: 
- - main
+ - main1
 
 pool:
    vmImage: 'ubuntu-latest'
@@ -7,11 +7,10 @@ pool:
 steps: 
 - task: GoTool@0
   inputs:
-    version: '1.13.5'
-- task: Go@0
+    version: '1.15.6'
+- task: CmdLine@2
   inputs:
-    command: 'get'
-    arguments: '-d'
+    script: 'go mod vendor'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 - task: Go@0
   inputs:
@@ -22,4 +21,5 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
-     artifactName: drop
+    pathToPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: drop
