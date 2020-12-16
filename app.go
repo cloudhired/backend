@@ -28,6 +28,7 @@ func main() {
 	router.GET("/", Index)
 	router.GET("/hello/:name", Hello)
 	router.GET("/api/users", handler.HandleGetAllUsers)
+	router.GET("/api/username/:username", handler.HandleGetUser)
 
 	log.Fatal(http.ListenAndServe(":8081", router))
 }

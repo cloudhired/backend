@@ -13,8 +13,8 @@ import (
 
 const (
 	CONNECTIONSTRING = "mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority"
-	DBNAME = "cloudhired"
-	COLLECTION =  "users"
+	DBNAME           = "cloudhired"
+	COLLECTION       = "users"
 )
 
 var db *mongo.Database
@@ -56,6 +56,16 @@ func AllUsers() []models.User {
 	return elements
 }
 
+func OneUser(u string) models.User {
+	var user models.User
+	filter := bson.D{{"username", u}}
+	err := collection.FindOne(context.Background(), filter).Decode(&user)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return user
+}
+
 func TestDb() {
 	collection := db.Collection(COLLECTION)
 	findOptions := options.Find()
@@ -78,4 +88,3 @@ func TestDb() {
 		fmt.Println(elem)
 	}
 }
-
