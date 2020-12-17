@@ -29,6 +29,7 @@ func main() {
 	router.GET("/hello/:name", Hello)
 	router.GET("/api/users", handler.HandleGetAllUsers)
 	router.GET("/api/username/:username", handler.HandleGetUser)
+	router.POST("/api/username/:username", handler.HandlePostOneUser)
 
-	log.Fatal(http.ListenAndServe(":8081", router))
+	log.Fatal(http.ListenAndServe(":3000", router))
 }

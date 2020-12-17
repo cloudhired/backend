@@ -56,7 +56,7 @@ func AllUsers() []models.User {
 	return elements
 }
 
-func OneUser(u string) models.User {
+func FindOneUser(u string) models.User {
 	var user models.User
 	filter := bson.D{{"username", u}}
 	err := collection.FindOne(context.Background(), filter).Decode(&user)
@@ -64,6 +64,27 @@ func OneUser(u string) models.User {
 		log.Fatal(err)
 	}
 	return user
+}
+
+func UpdateOneUser(u string, doc interface{}) bool {
+	opts := options.Update().SetUpsert(false)
+	filter := bson.D{{"username", u}}
+	update := bson.D{{"$set", doc}}
+	_, err := collection.UpdateOne(context.TODO(), filter, update, opts)
+	if err != nil {
+		log.Fatal(err)
+		return false
+	}
+	return true
+}
+
+func toDoc(v interface{}) (doc *bson.D, err error) {
+	data, err := bson.Marshal(v)
+	if err != nil {
+		return
+	}
+	err = bson.Unmarshal(data, &doc)
+	return
 }
 
 func TestDb() {

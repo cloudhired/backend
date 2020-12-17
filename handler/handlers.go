@@ -4,6 +4,7 @@ import (
 	"cloudhired.com/api/dao"
 	"cloudhired.com/api/models"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -19,8 +20,22 @@ func HandleGetAllUsers(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 }
 
 func HandleGetUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	payload := dao.OneUser(ps.ByName("username"))
 	m := make(map[string]models.User)
-	m["data"] = payload
+	m["data"] = dao.FindOneUser(ps.ByName("username"))
 	json.NewEncoder(w).Encode(m)
+}
+
+func HandlePostOneUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	username := ps.ByName("username")
+	var user interface{}
+	var res = make(map[string]interface{})
+	json.NewDecoder(r.Body).Decode(&user)
+	fmt.Println(user)
+	var isGood = dao.UpdateOneUser(username, user)
+	if isGood {
+		res["error"] = nil
+	} else {
+		res["error"] = true
+	}
+	json.NewEncoder(w).Encode(res)
 }
