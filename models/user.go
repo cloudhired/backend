@@ -5,10 +5,22 @@ import (
 )
 
 type User struct {
-	Identifier
-	BasicInfo
-	Introduction
-	SkillSet
+	Username string `bson:"username" json:"username"`
+	Email    string `bson:"email" json:"email"`
+
+	FullName        string `bson:"fullname,omitempty" json:"fullname,omitempty"`
+	FirstName       string `bson:"fname" json:"fname"`
+	LastName        string `bson:"lname" json:"lname"`
+	JobTitle        string `bson:"job_title,omitempty" json:"job_title,omitempty"`
+	CurrentLocation string `bson:"current_loc" json:"current_location"`
+	Company         string `bson:"company" json:"company"`
+	YOE             string `bson:"yoe" json:"yoe"`
+	PersonalSite    string `bson:"personal_site" json:"personal_site"`
+	LinkedinHandle  string `bson:"linkedin_handle" json:"linkedin_handle"`
+	GithubHandle    string `bson:"github_handle" json:"github_handle"`
+
+	Intro           string      `bson:"intro" json:"intro"`
+	Skills          []string    `bson:"skills" json:"skills"`
 	Certs           []Cert      `bson:"certs" json:"certs"`
 	GHContributions string      `bson:"gh_contributions" json:"gh_contributions"`
 	Portfolios      []Portfolio `bson:"portfolios" json:"portfolios"`

@@ -25,11 +25,19 @@ func init() {
 
 func main() {
 	router := httprouter.New()
+	router.GlobalOPTIONS = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		header := w.Header()
+		header.Set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
+		header.Set("Access-Control-Allow-Origin", "*")
+		header.Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		w.WriteHeader(http.StatusNoContent)
+	})
+
 	router.GET("/", Index)
 	router.GET("/hello/:name", Hello)
 	router.GET("/api/users", handler.HandleGetAllUsers)
 	router.GET("/api/username/:username", handler.HandleGetUser)
 	router.POST("/api/username/:username", handler.HandlePostOneUser)
 
-	log.Fatal(http.ListenAndServe(":3000", router))
+	log.Fatal(http.ListenAndServe(":8081", router))
 }

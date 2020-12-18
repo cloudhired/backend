@@ -37,5 +37,7 @@ func HandlePostOneUser(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	} else {
 		res["error"] = true
 	}
+	w.Header().Add("Access-Control-Allow-Origin", "*")
+	w.Header().Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	json.NewEncoder(w).Encode(res)
 }
