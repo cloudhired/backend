@@ -11,7 +11,7 @@ schemes:
 produces:
   - application/json
 x-google-backend:
-  address: https://api.cloudhired.com
+  address: https://cloudhired-backend-f4ql6f3osq-uc.a.run.app
   protocol: h2
 paths:
   /api/users:

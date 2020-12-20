@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="cors is done">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gcloud_build_image" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/openapi-run.yaml" afterDir="false" />
+    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="trying to get endpoint working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi-run.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi-run.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +74,8 @@
     <MESSAGE value="/api/username/:username endpoint done" />
     <MESSAGE value="/api/username/ POST is done" />
     <MESSAGE value="cors is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="cors is done" />
+    <MESSAGE value="trying to get endpoint working" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to get endpoint working" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
