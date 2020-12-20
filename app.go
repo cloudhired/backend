@@ -39,5 +39,5 @@ func main() {
 	router.GET("/api/username/:username", handler.HandleGetUser)
 	router.POST("/api/username/:username", handler.HandlePostOneUser)
 
-	log.Fatal(http.ListenAndServe(":8081", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
