@@ -15,7 +15,7 @@ var users []models.User
 func HandleGetAllUsers(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	payload := dao.AllUsers()
 	m := make(map[string][]models.User)
-	m["result"] = payload
+	m["results"] = payload
 	json.NewEncoder(w).Encode(m)
 }
 
