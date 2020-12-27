@@ -7,10 +7,27 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/julienschmidt/httprouter"
 )
 
 var users []models.User
+
+func HandleGetUsername(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	tokenString := ps.ByName("jwt")
+	if token, _ := jwt.Parse(tokenString, nil); token != nil {
+		claims, _ := token.Claims.(jwt.MapClaims)
+		uid, _ := claims["user_id"].(string)
+		name, _ := claims["name"].(string)
+		email, _ := claims["email"].(string)
+		emailVerified, _ := claims["email_verified"].(bool)
+		m := make(map[string]string)
+		m["username"] = dao.GetUsernameByUid(uid, name, email, emailVerified)
+		json.NewEncoder(w).Encode(m)
+	} else {
+		fmt.Println("token is empty")
+	}
+}
 
 func HandleGetAllUsers(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	payload := dao.AllUsers()
@@ -30,7 +47,6 @@ func HandlePostOneUser(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	var user interface{}
 	var res = make(map[string]interface{})
 	json.NewDecoder(r.Body).Decode(&user)
-	fmt.Println(user)
 	var isGood = dao.UpdateOneUser(username, user)
 	if isGood {
 		res["error"] = nil

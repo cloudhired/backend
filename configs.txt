@@ -1,0 +1,8 @@
+CONFIG_ID     SERVICE_NAME
+2020-12-20r0  api.cloudhired.com
+2020-12-19r5  api.cloudhired.com
+2020-12-19r4  api.cloudhired.com
+2020-12-19r3  api.cloudhired.com
+2020-12-19r2  api.cloudhired.com
+2020-12-19r1  api.cloudhired.com
+2020-12-19r0  api.cloudhired.com
