@@ -1,14 +1,15 @@
 package dao
 
 import (
+	"cloudhired.com/api/helper"
+	"cloudhired.com/api/models"
 	"context"
 	"fmt"
-	"log"
-
-	"cloudhired.com/api/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
+	"strings"
 )
 
 const (
@@ -32,25 +33,39 @@ func init() {
 	collection = db.Collection(COLLECTION)
 }
 
-func GetIdByUid(uid interface{}) bson.M {
+func GetUsernameByUid(uid string, name string, email string, emailVerifiled bool) string {
 	filter := bson.D{
 		{"uid", uid},
-		{"email", "gaomengen@gmail.com"},
+		{"email", email},
 	}
 	projection := bson.D{
 		{"username", 1},
 	}
-	var username bson.M
-	err := collection.FindOne(context.Background(), filter, options.FindOne().SetProjection(projection)).Decode(&username)
+	var u bson.M
+	err := collection.FindOne(context.Background(), filter, options.FindOne().SetProjection(projection)).Decode(&u)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			// if no doc found, create new user
-			return nil
+			usernameList := strings.Split(strings.TrimSpace(strings.ToLower(name)), " ")
+			usernameList = append(usernameList, helper.RandomString(8))
+			username := strings.Join(usernameList, "-")
+			insert := bson.D{
+				{"uid", uid},
+				{"username", username},
+				{"email", email},
+				{"fullname", name},
+				{"email_verified", emailVerifiled},
+			}
+			_, insErr := collection.InsertOne(context.Background(), insert)
+			if insErr != nil {
+				log.Fatal(insErr)
+			}
+			return username
 		}
 		fmt.Println("error occured")
 		log.Fatal(err)
 	}
-	return username
+	return u["username"].(string)
 }
 
 func AllUsers() []models.User {
