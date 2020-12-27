@@ -7,10 +7,22 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/julienschmidt/httprouter"
 )
 
 var users []models.User
+
+func HandleGetId(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	tokenString := ps.ByName("jwt")
+	if token, _ := jwt.Parse(tokenString, nil); token != nil {
+		claims, _ := token.Claims.(jwt.MapClaims)
+		uid := claims["user_id"]
+		dao.GetIdByUid(uid)
+	} else {
+		fmt.Println("token is empty")
+	}
+}
 
 func HandleGetAllUsers(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	payload := dao.AllUsers()

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="trying to get endpoint working">
+    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="init dev branch">
+      <change afterPath="$PROJECT_DIR$/configs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/users_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/users_dao.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openapi-run.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi-run.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +79,9 @@
     <MESSAGE value="/api/username/ POST is done" />
     <MESSAGE value="cors is done" />
     <MESSAGE value="trying to get endpoint working" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to get endpoint working" />
+    <MESSAGE value="testing CI/CD" />
+    <MESSAGE value="init dev branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="init dev branch" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

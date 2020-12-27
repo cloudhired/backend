@@ -32,6 +32,27 @@ func init() {
 	collection = db.Collection(COLLECTION)
 }
 
+func GetIdByUid(uid interface{}) bson.M {
+	filter := bson.D{
+		{"uid", uid},
+		{"email", "gaomengen@gmail.com"},
+	}
+	projection := bson.D{
+		{"username", 1},
+	}
+	var username bson.M
+	err := collection.FindOne(context.Background(), filter, options.FindOne().SetProjection(projection)).Decode(&username)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			// if no doc found, create new user
+			return nil
+		}
+		fmt.Println("error occured")
+		log.Fatal(err)
+	}
+	return username
+}
+
 func AllUsers() []models.User {
 	findOptions := options.Find()
 	findOptions.SetLimit(10)
