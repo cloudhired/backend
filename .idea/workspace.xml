@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="working on get username by UID api">
-      <change afterPath="$PROJECT_DIR$/helper/helpers.go" afterDir="false" />
+    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="finished uid to username api, ready to deploy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/users_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/users_dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +78,8 @@
     <MESSAGE value="testing CI/CD" />
     <MESSAGE value="init dev branch" />
     <MESSAGE value="working on get username by UID api" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on get username by UID api" />
+    <MESSAGE value="finished uid to username api, ready to deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished uid to username api, ready to deploy" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

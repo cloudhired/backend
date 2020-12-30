@@ -6,9 +6,11 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Println(strings.Split(r.Header.Get("Authorization"), " ")[1])
 	fmt.Fprint(w, "Welcome!\n")
 }
 

@@ -14,6 +14,7 @@ import (
 var users []models.User
 
 func HandleGetUsername(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// TODO: need to get JWT from header.
 	tokenString := ps.ByName("jwt")
 	if token, _ := jwt.Parse(tokenString, nil); token != nil {
 		claims, _ := token.Claims.(jwt.MapClaims)
