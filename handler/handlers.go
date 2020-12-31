@@ -14,8 +14,9 @@ import (
 var users []models.User
 
 func HandleGetUsername(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	if auth := r.Header.Get("Authorization"); len(auth) > 0 {
+	if auth := r.Header.Get("x-auth-token"); len(auth) > 0 {
 		tokenString := strings.Split(auth, " ")[1]
+		fmt.Println(tokenString)
 		if token, _ := jwt.Parse(tokenString, nil); token != nil {
 			claims, _ := token.Claims.(jwt.MapClaims)
 			uid, _ := claims["user_id"].(string)
