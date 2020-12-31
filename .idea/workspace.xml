@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="testing if can get auth header 1">
+    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="testing if can get auth header 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,8 @@
     <MESSAGE value="finished uid to username api, ready to deploy" />
     <MESSAGE value="testing if can get auth header" />
     <MESSAGE value="testing if can get auth header 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing if can get auth header 1" />
+    <MESSAGE value="testing if can get auth header 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing if can get auth header 2" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

@@ -5,28 +5,31 @@ import (
 	"cloudhired.com/api/models"
 	"encoding/json"
 	"fmt"
-	"net/http"
-
 	"github.com/dgrijalva/jwt-go"
 	"github.com/julienschmidt/httprouter"
+	"net/http"
+	"strings"
 )
 
 var users []models.User
 
-func HandleGetUsername(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	// TODO: need to get JWT from header.
-	tokenString := ps.ByName("jwt")
-	if token, _ := jwt.Parse(tokenString, nil); token != nil {
-		claims, _ := token.Claims.(jwt.MapClaims)
-		uid, _ := claims["user_id"].(string)
-		name, _ := claims["name"].(string)
-		email, _ := claims["email"].(string)
-		emailVerified, _ := claims["email_verified"].(bool)
-		m := make(map[string]string)
-		m["username"] = dao.GetUsernameByUid(uid, name, email, emailVerified)
-		json.NewEncoder(w).Encode(m)
+func HandleGetUsername(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	if auth := r.Header.Get("Authorization"); len(auth) > 0 {
+		tokenString := strings.Split(auth, " ")[1]
+		if token, _ := jwt.Parse(tokenString, nil); token != nil {
+			claims, _ := token.Claims.(jwt.MapClaims)
+			uid, _ := claims["user_id"].(string)
+			name, _ := claims["name"].(string)
+			email, _ := claims["email"].(string)
+			emailVerified, _ := claims["email_verified"].(bool)
+			m := make(map[string]string)
+			m["username"] = dao.GetUsernameByUid(uid, name, email, emailVerified)
+			json.NewEncoder(w).Encode(m)
+		} else {
+			fmt.Println("token is empty")
+		}
 	} else {
-		fmt.Println("token is empty")
+		fmt.Println("auth header is empty, not authorized.")
 	}
 }
 
