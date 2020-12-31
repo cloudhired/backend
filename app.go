@@ -37,7 +37,7 @@ func main() {
 
 	router.GET("/testing", Index)
 	router.GET("/hello/:name", Hello)
-	router.GET("/api/uidtousername/:jwt", handler.HandleGetUsername)
+	router.GET("/api/uidtousername", handler.HandleGetUsername)
 	router.GET("/api/users", handler.HandleGetAllUsers)
 	router.GET("/api/username/:username", handler.HandleGetUser)
 	router.POST("/api/username/:username", handler.HandlePostOneUser)
