@@ -8,14 +8,12 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
-	"strings"
 )
 
 var users []models.User
 
 func HandleGetUsername(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	if auth := r.Header.Get("x-auth-token"); len(auth) > 0 {
-		tokenString := strings.Split(auth, " ")[1]
+	if tokenString := r.Header.Get("x-auth-token"); len(tokenString) > 0 {
 		fmt.Println(tokenString)
 		if token, _ := jwt.Parse(tokenString, nil); token != nil {
 			claims, _ := token.Claims.(jwt.MapClaims)
