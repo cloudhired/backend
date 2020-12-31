@@ -10,7 +10,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Println(strings.Split(r.Header.Get("Authorization"), " ")[1])
+	//fmt.Println(strings.Split(r.Header.Get("Authorization"), " ")[1])
 	fmt.Fprint(w, strings.Split(r.Header.Get("Authorization"), " ")[1])
 }
 
