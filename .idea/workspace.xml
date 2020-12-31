@@ -4,7 +4,6 @@
     <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="finished uid to username api, ready to deploy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

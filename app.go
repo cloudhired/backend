@@ -11,7 +11,7 @@ import (
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Println(strings.Split(r.Header.Get("Authorization"), " ")[1])
-	fmt.Fprint(w, "Welcome!\n")
+	fmt.Fprint(w, strings.Split(r.Header.Get("Authorization"), " ")[1])
 }
 
 func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
