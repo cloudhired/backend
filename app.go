@@ -27,11 +27,12 @@ func init() {
 
 func main() {
 	router := httprouter.New()
+	// cloud endpoint has cors setting so do not need to configure here. set to allow all.
 	router.GlobalOPTIONS = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		header := w.Header()
 		header.Set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
 		header.Set("Access-Control-Allow-Origin", "*")
-		header.Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With, x-auth-token")
+		header.Set("Access-Control-Allow-Headers", "*")
 		w.WriteHeader(http.StatusNoContent)
 	})
 
