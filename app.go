@@ -35,7 +35,7 @@ func main() {
 		w.WriteHeader(http.StatusNoContent)
 	})
 
-	router.GET("/", Index)
+	router.GET("/testing", Index)
 	router.GET("/hello/:name", Hello)
 	router.GET("/api/uidtousername/:jwt", handler.HandleGetUsername)
 	router.GET("/api/users", handler.HandleGetAllUsers)
