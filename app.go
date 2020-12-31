@@ -31,7 +31,7 @@ func main() {
 		header := w.Header()
 		header.Set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS")
 		header.Set("Access-Control-Allow-Origin", "*")
-		header.Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		header.Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With, x-auth-token")
 		w.WriteHeader(http.StatusNoContent)
 	})
 
