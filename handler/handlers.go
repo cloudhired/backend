@@ -21,9 +21,13 @@ func HandleGetUsername(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 			name, _ := claims["name"].(string)
 			email, _ := claims["email"].(string)
 			emailVerified, _ := claims["email_verified"].(bool)
-			m := make(map[string]string)
-			m["username"] = dao.GetUsernameByUid(uid, name, email, emailVerified)
-			json.NewEncoder(w).Encode(m)
+			if len(uid) > 0 {
+				m := make(map[string]string)
+				m["username"] = dao.GetUsernameByUid(uid, name, email, emailVerified)
+				json.NewEncoder(w).Encode(m)
+			} else {
+				fmt.Println("UID is empty, will not proceed")
+			}
 		} else {
 			fmt.Println("token is empty")
 		}

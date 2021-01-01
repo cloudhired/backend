@@ -12,7 +12,7 @@ type User struct {
 	FirstName       string `bson:"fname" json:"fname"`
 	LastName        string `bson:"lname" json:"lname"`
 	JobTitle        string `bson:"job_title,omitempty" json:"job_title,omitempty"`
-	CurrentLocation string `bson:"current_loc" json:"current_location"`
+	CurrentLocation string `bson:"current_loc" json:"current_loc"`
 	Company         string `bson:"company" json:"company"`
 	YOE             string `bson:"yoe" json:"yoe"`
 	PersonalSite    string `bson:"personal_site" json:"personal_site"`
