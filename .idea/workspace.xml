@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="changed auth token get">
+    <list default="true" id="7c4083aa-8cb6-4318-a93e-b75489d5c82c" name="Default Changelist" comment="currected current location">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/users_dao.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/users_dao.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +86,8 @@
     <MESSAGE value="need to pass jwt myself" />
     <MESSAGE value="added x-auth-token as allowed header" />
     <MESSAGE value="changed auth token get" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed auth token get" />
+    <MESSAGE value="currected current location" />
+    <option name="LAST_COMMIT_MESSAGE" value="currected current location" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

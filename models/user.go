@@ -45,19 +45,15 @@ type BasicInfo struct {
 	GithubHandle    string `bson:"github_handle" json:"github_handle"`
 }
 
-type Introduction struct {
-	Intro string `bson:"intro" json:"intro"`
-}
-
 type SkillSet struct {
 	Skills []string `bson:"skills" json:"skills"`
 }
 
 type Cert struct {
-	CertName    string             `bson: "cert_name" json:"cert_name"`
+	CertName    string             `bson:"cert_name" json:"cert_name"`
+	VerifyLink  string             `bson:"verify_link" json:"verify_link"`
 	DateIssued  primitive.DateTime `bson:"date_issued" json:"date_issued"`
 	DateExpired primitive.DateTime `bson:"date_expired" json:"date_expired"`
-	VerifyLink  string             `bson:"verify_link" json:"verify_link"`
 }
 
 type Portfolio struct {
