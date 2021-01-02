@@ -94,11 +94,13 @@ func AllUsers() []models.User {
 
 func FindOneUser(u string) models.User {
 	var user models.User
+	//var ur interface{}
 	filter := bson.D{{"username", u}}
 	err := collection.FindOne(context.Background(), filter).Decode(&user)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println(user)
 	return user
 }
 
