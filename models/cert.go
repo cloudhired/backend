@@ -2,6 +2,6 @@ package models
 
 type CertProfile struct {
 	Name     string `bson:"name" json:"name"`
-	Icon     string `bson:"icon" json:"icon"`
+	Id       string `bson:"id" json:"id"`
 	IssuedBy string `bson:"issued_by" json:"issued_by"`
 }
