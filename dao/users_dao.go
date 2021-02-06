@@ -65,7 +65,6 @@ func GetUsernameByUid(uid string, name string, email string, emailVerifiled bool
 			}
 			return username
 		}
-		fmt.Println("error occured")
 		log.Fatal(err)
 	}
 	return u["username"].(string)
@@ -103,7 +102,6 @@ func FindOneUser(u string) models.User {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(user)
 	return user
 }
 

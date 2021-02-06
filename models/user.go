@@ -50,10 +50,9 @@ type SkillSet struct {
 }
 
 type Cert struct {
-	CertName    string             `bson:"cert_name" json:"cert_name"`
-	VerifyLink  string             `bson:"verify_link" json:"verify_link"`
-	DateIssued  primitive.DateTime `bson:"date_issued" json:"date_issued"`
-	DateExpired primitive.DateTime `bson:"date_expired" json:"date_expired"`
+	CertId     string `bson:"cert_id" json:"cert_id"`
+	CertName   string `bson:"cert_name" json:"cert_name"`
+	VerifyLink string `bson:"verify_link" json:"verify_link"`
 }
 
 type Portfolio struct {

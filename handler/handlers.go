@@ -59,6 +59,7 @@ func HandlePostOneUser(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	var user interface{}
 	var res = make(map[string]interface{})
 	json.NewDecoder(r.Body).Decode(&user)
+	fmt.Println(user)
 	var isGood = dao.UpdateOneUser(username, user)
 	if isGood {
 		res["error"] = nil
