@@ -10,8 +10,6 @@ import (
 	"net/http"
 )
 
-var users []models.User
-
 func HandleGetUsername(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	if tokenString := r.Header.Get("x-auth-token"); len(tokenString) > 0 {
 		fmt.Println(tokenString)
@@ -46,6 +44,13 @@ func HandleGetAllUsers(w http.ResponseWriter, r *http.Request, _ httprouter.Para
 func HandleGetUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	m := make(map[string]models.User)
 	m["data"] = dao.FindOneUser(ps.ByName("username"))
+	json.NewEncoder(w).Encode(m)
+}
+
+func HandleGetAllCerts(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	payload := dao.AllCerts()
+	m := make(map[string][]models.CertProfile)
+	m["results"] = payload
 	json.NewEncoder(w).Encode(m)
 }
 

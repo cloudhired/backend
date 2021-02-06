@@ -41,6 +41,7 @@ func main() {
 	router.GET("/api/uidtousername", handler.HandleGetUsername)
 	router.GET("/api/users", handler.HandleGetAllUsers)
 	router.GET("/api/username/:username", handler.HandleGetUser)
+	router.GET("/api/allcerts", handler.HandleGetAllCerts)
 	router.POST("/api/username/:username", handler.HandlePostOneUser)
 
 	log.Fatal(http.ListenAndServe(":8080", router))

@@ -16,10 +16,12 @@ const (
 	CONNECTIONSTRING = "mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority"
 	DBNAME           = "cloudhired"
 	COLLECTION       = "users"
+	CertsCollection  = "certifications"
 )
 
 var db *mongo.Database
 var collection *mongo.Collection
+var certsCollection *mongo.Collection
 
 func init() {
 	clientOptions := options.Client().ApplyURI(CONNECTIONSTRING)
@@ -31,6 +33,7 @@ func init() {
 	// Collection types can be used to access the database
 	db = client.Database(DBNAME)
 	collection = db.Collection(COLLECTION)
+	certsCollection = db.Collection(CertsCollection)
 }
 
 func GetUsernameByUid(uid string, name string, email string, emailVerifiled bool) string {
@@ -104,6 +107,30 @@ func FindOneUser(u string) models.User {
 	return user
 }
 
+func AllCerts() []models.CertProfile {
+	findOptions := options.Find()
+	findOptions.SetLimit(10)
+	cur, err := certsCollection.Find(context.Background(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	var elements []models.CertProfile
+	var e models.CertProfile
+	// Get the next result from the cursor
+	for cur.Next(context.Background()) {
+		err := cur.Decode(&e)
+		if err != nil {
+			log.Fatal(err)
+		}
+		elements = append(elements, e)
+	}
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+	cur.Close(context.Background())
+	return elements
+}
+
 func UpdateOneUser(u string, doc interface{}) bool {
 	opts := options.Update().SetUpsert(false)
 	filter := bson.D{{"username", u}}
@@ -114,15 +141,6 @@ func UpdateOneUser(u string, doc interface{}) bool {
 		return false
 	}
 	return true
-}
-
-func toDoc(v interface{}) (doc *bson.D, err error) {
-	data, err := bson.Marshal(v)
-	if err != nil {
-		return
-	}
-	err = bson.Unmarshal(data, &doc)
-	return
 }
 
 func TestDb() {
