@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	CONNECTIONSTRING = "mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority"
+	CONNECTIONSTRING = "#NOTSEEN#"
 	DBNAME           = "cloudhired"
 	COLLECTION       = "users"
 	CertsCollection  = "certifications"
