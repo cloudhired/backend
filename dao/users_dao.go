@@ -30,7 +30,7 @@ func init() {
 	decoder := json.NewDecoder(file)
 	decoder.Decode(&configuration)
 
-	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
+	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
