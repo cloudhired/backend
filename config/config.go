@@ -30,5 +30,5 @@ func init() {
 		log.Fatal("the Error: ", err)
 	}
 
-	log.Fatal("result: ", string(result.Payload.Data))
+	log.Fatal("secret result: ", string(result.Payload.Data))
 }
