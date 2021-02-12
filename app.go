@@ -2,16 +2,23 @@ package main
 
 import (
 	"cloudhired.com/api/handler"
+	"cloudhired.com/api/models"
+	"encoding/json"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
-	"strings"
+	"os"
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	//fmt.Println(strings.Split(r.Header.Get("Authorization"), " ")[1])
-	fmt.Fprint(w, strings.Split(r.Header.Get("Authorization"), " ")[1])
+	var configuration models.Configuration
+	file, _ := os.Open("./config/config.json")
+	decoder := json.NewDecoder(file)
+	decoder.Decode(&configuration)
+	fmt.Println(configuration.ConnectionString)
+	json.NewEncoder(w).Encode(configuration.ConnectionString)
 }
 
 func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
@@ -19,7 +26,6 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 }
 
 func init() {
-
 	// dao.Server = "localhost"
 	// dao.Database = "users"
 	// dao.Connect()

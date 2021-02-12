@@ -4,27 +4,33 @@ import (
 	"cloudhired.com/api/helper"
 	"cloudhired.com/api/models"
 	"context"
+	"encoding/json"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"os"
 	"strings"
 )
 
 const (
-	CONNECTIONSTRING = "#NOTSEEN#"
-	DBNAME           = "cloudhired"
-	COLLECTION       = "users"
-	CertsCollection  = "certifications"
+	DBNAME          = "cloudhired"
+	COLLECTION      = "users"
+	CERTSCOLLECTION = "certifications"
 )
 
 var db *mongo.Database
 var collection *mongo.Collection
 var certsCollection *mongo.Collection
+var configuration models.Configuration
 
 func init() {
-	clientOptions := options.Client().ApplyURI(CONNECTIONSTRING)
+	file, _ := os.Open("./config/config.json")
+	decoder := json.NewDecoder(file)
+	decoder.Decode(&configuration)
+
+	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
@@ -33,7 +39,7 @@ func init() {
 	// Collection types can be used to access the database
 	db = client.Database(DBNAME)
 	collection = db.Collection(COLLECTION)
-	certsCollection = db.Collection(CertsCollection)
+	certsCollection = db.Collection(CERTSCOLLECTION)
 }
 
 func GetUsernameByUid(uid string, name string, email string, emailVerifiled bool) string {
