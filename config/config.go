@@ -22,7 +22,7 @@ func init() {
 	}
 
 	req := &secretmanagerpb.AccessSecretVersionRequest{
-		Name: "projects/782780515351/secrets/my-secret",
+		Name: "projects/782780515351/secrets/my-secret/versions/latest",
 	}
 
 	result, err := client.AccessSecretVersion(ctx, req)
