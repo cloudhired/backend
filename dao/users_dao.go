@@ -30,10 +30,11 @@ func init() {
 	decoder := json.NewDecoder(file)
 	decoder.Decode(&configuration)
 
-	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
+	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
+		log.Fatal("you can see this error?", "Hi", configuration.ConnectionString)
 	}
 
 	// Collection types can be used to access the database
