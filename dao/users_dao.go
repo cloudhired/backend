@@ -17,7 +17,6 @@ const (
 	DBNAME          = "cloudhired"
 	COLLECTION      = "users"
 	CERTSCOLLECTION = "certifications"
-	CONNSTRING      = config.ConnectionString
 )
 
 var db *mongo.Database
@@ -25,10 +24,11 @@ var collection *mongo.Collection
 var certsCollection *mongo.Collection
 
 func init() {
-	clientOptions := options.Client().ApplyURI(CONNSTRING)
+	clientOptions := options.Client().ApplyURI(config.ConnectionString)
+	fmt.Println(config.ConnectionString, " the conn")
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
-		log.Fatal(err, " you can see this error? ", CONNSTRING)
+		log.Fatal(err)
 	}
 
 	// Collection types can be used to access the database
