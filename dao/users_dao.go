@@ -1,17 +1,15 @@
 package dao
 
 import (
+	"cloudhired.com/api/config"
 	"cloudhired.com/api/helper"
 	"cloudhired.com/api/models"
 	"context"
-	"encoding/json"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
-	"os"
-	"path/filepath"
 	"strings"
 )
 
@@ -19,28 +17,18 @@ const (
 	DBNAME          = "cloudhired"
 	COLLECTION      = "users"
 	CERTSCOLLECTION = "certifications"
+	CONNSTRING      = config.ConnectionString
 )
 
 var db *mongo.Database
 var collection *mongo.Collection
 var certsCollection *mongo.Collection
-var configuration models.Configuration
 
 func init() {
-	confPath, err := filepath.Abs("./config/config.json")
-	file, err := os.Open(confPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&configuration)
-	if err != nil {
-		log.Fatal(err)
-	}
-	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
+	clientOptions := options.Client().ApplyURI(CONNSTRING)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
-		log.Fatal(err, " you can see this error? ", configuration.ConnectionString)
+		log.Fatal(err, " you can see this error? ", CONNSTRING)
 	}
 
 	// Collection types can be used to access the database
