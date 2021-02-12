@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -26,7 +27,8 @@ var certsCollection *mongo.Collection
 var configuration models.Configuration
 
 func init() {
-	file, err := os.Open("./config/config.json")
+	confPath, err := filepath.Abs("./config/config.json")
+	file, err := os.Open(confPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,7 +37,7 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
+	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err, " you can see this error? ", configuration.ConnectionString)
