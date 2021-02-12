@@ -26,15 +26,19 @@ var certsCollection *mongo.Collection
 var configuration models.Configuration
 
 func init() {
-	file, _ := os.Open("./config/config.json")
-	decoder := json.NewDecoder(file)
-	decoder.Decode(&configuration)
-
-	clientOptions := options.Client().ApplyURI(configuration.ConnectionString)
-	client, err := mongo.Connect(context.Background(), clientOptions)
+	file, err := os.Open("./config/config.json")
 	if err != nil {
 		log.Fatal(err)
-		log.Fatal("you can see this error?", "Hi", configuration.ConnectionString)
+	}
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&configuration)
+	if err != nil {
+		log.Fatal(err)
+	}
+	clientOptions := options.Client().ApplyURI("mongodb+srv://ch-user:FhDne1WoX3qI2wIm@cloudhired.c58f7.gcp.mongodb.net/cloudhired?retryWrites=true&w=majority")
+	client, err := mongo.Connect(context.Background(), clientOptions)
+	if err != nil {
+		log.Fatal(err, " you can see this error? ", configuration.ConnectionString)
 	}
 
 	// Collection types can be used to access the database
