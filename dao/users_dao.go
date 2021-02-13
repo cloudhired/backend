@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"cloudhired.com/api/clogger"
 	"cloudhired.com/api/config"
 	"cloudhired.com/api/helper"
 	"cloudhired.com/api/models"
@@ -9,7 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
 	"strings"
 )
 
@@ -27,7 +27,7 @@ func init() {
 	clientOptions := options.Client().ApplyURI(config.ConnectionString)
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 
 	// Collection types can be used to access the database
@@ -61,11 +61,11 @@ func GetUsernameByUid(uid string, name string, email string, emailVerifiled bool
 			}
 			_, insErr := collection.InsertOne(context.Background(), insert)
 			if insErr != nil {
-				log.Fatal(insErr)
+				clogger.Error(insErr)
 			}
 			return username
 		}
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	return u["username"].(string)
 }
@@ -75,7 +75,7 @@ func AllUsers() []models.User {
 	findOptions.SetLimit(10)
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	var elements []models.User
 	var e models.User
@@ -83,12 +83,12 @@ func AllUsers() []models.User {
 	for cur.Next(context.Background()) {
 		err := cur.Decode(&e)
 		if err != nil {
-			log.Fatal(err)
+			clogger.Error(err)
 		}
 		elements = append(elements, e)
 	}
 	if err := cur.Err(); err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	cur.Close(context.Background())
 	return elements
@@ -100,7 +100,7 @@ func FindOneUser(u string) models.User {
 	filter := bson.D{{"username", u}}
 	err := collection.FindOne(context.Background(), filter).Decode(&user)
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	return user
 }
@@ -110,7 +110,7 @@ func AllCerts() []models.CertProfile {
 	findOptions.SetLimit(10)
 	cur, err := certsCollection.Find(context.Background(), bson.D{{}})
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	var elements []models.CertProfile
 	var e models.CertProfile
@@ -118,12 +118,12 @@ func AllCerts() []models.CertProfile {
 	for cur.Next(context.Background()) {
 		err := cur.Decode(&e)
 		if err != nil {
-			log.Fatal(err)
+			clogger.Error(err)
 		}
 		elements = append(elements, e)
 	}
 	if err := cur.Err(); err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	cur.Close(context.Background())
 	return elements
@@ -135,7 +135,7 @@ func UpdateOneUser(u string, doc interface{}) bool {
 	update := bson.D{{"$set", doc}}
 	_, err := collection.UpdateOne(context.TODO(), filter, update, opts)
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 		return false
 	}
 	return true
@@ -147,12 +147,12 @@ func TestDb() {
 	findOptions.SetLimit(10)
 	cur, err := collection.Find(context.TODO(), bson.D{{}})
 	if err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 
 	var results []bson.M
 	if err = cur.All(context.TODO(), &results); err != nil {
-		log.Fatal(err)
+		clogger.Error(err)
 	}
 	for _, result := range results {
 		fmt.Println(result)

@@ -57,7 +57,7 @@ func Critical(info string) {
 	infoLogger.Println(info)
 }
 
-func Emergency(msg string) {
+func Emergency(msg interface{}) {
 	emergLogger := logger.StandardLogger(logging.Emergency)
 	emergLogger.Println(msg)
 }

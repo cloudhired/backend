@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CONNSTRING = "projects/782780515351/secrets/my-secret/versions/latest"
+	CONNSTRING = "projects/782780515351/secrets/atlas-conn-string/versions/latest"
 )
 
 var ConnectionString string
@@ -20,18 +20,8 @@ func init() {
 		clogger.Error(err)
 	}
 
-	clogger.Default("default message@@@@@@@@@@@@")
-	clogger.Alert("alert message")
-	clogger.Critical("very critical")
-	clogger.Info("just info")
-	clogger.Emergency("This is emergency. DO NOT ignore!!")
-	clogger.Warning("warning!!")
-	clogger.Notice("just a notice")
-	clogger.Debug("debugging...")
-
-	req := &secretmanagerpb.AccessSecretVersionRequest{
-		Name: CONNSTRING,
-	}
+	// get atlas connection string
+	req := &secretmanagerpb.AccessSecretVersionRequest{Name: CONNSTRING}
 	result, err := client.AccessSecretVersion(ctx, req)
 	if err != nil {
 		clogger.Error(err)

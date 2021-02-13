@@ -1,10 +1,10 @@
 package main
 
 import (
+	"cloudhired.com/api/clogger"
 	"cloudhired.com/api/handler"
 	"fmt"
 	"github.com/julienschmidt/httprouter"
-	"log"
 	"net/http"
 )
 
@@ -41,5 +41,8 @@ func main() {
 	router.GET("/api/allcerts", handler.HandleGetAllCerts)
 	router.POST("/api/username/:username", handler.HandlePostOneUser)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	err := http.ListenAndServe(":8080", router)
+	if err != nil {
+		clogger.Emergency(err)
+	}
 }
