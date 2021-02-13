@@ -17,9 +17,6 @@ func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 }
 
 func init() {
-	// dao.Server = "localhost"
-	// dao.Database = "users"
-	// dao.Connect()
 }
 
 func main() {
