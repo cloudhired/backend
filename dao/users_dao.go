@@ -25,7 +25,6 @@ var certsCollection *mongo.Collection
 
 func init() {
 	clientOptions := options.Client().ApplyURI(config.ConnectionString)
-	fmt.Println(config.ConnectionString, " the conn")
 	client, err := mongo.Connect(context.Background(), clientOptions)
 	if err != nil {
 		log.Fatal(err)

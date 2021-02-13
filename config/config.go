@@ -2,6 +2,7 @@ package config
 
 import (
 	secretmanager "cloud.google.com/go/secretmanager/apiv1"
+	"cloudhired.com/api/clogger"
 	"context"
 	"fmt"
 	secretmanagerpb "google.golang.org/genproto/googleapis/cloud/secretmanager/v1"
@@ -13,9 +14,8 @@ var ConnectionString string
 func init() {
 	ctx := context.Background()
 	client, err := secretmanager.NewClient(ctx)
-	fmt.Println("here")
 	if err != nil {
-		log.Fatal("client: ", err)
+		clogger.LogError(err)
 	}
 
 	req := &secretmanagerpb.AccessSecretVersionRequest{
