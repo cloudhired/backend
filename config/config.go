@@ -15,8 +15,17 @@ func init() {
 	ctx := context.Background()
 	client, err := secretmanager.NewClient(ctx)
 	if err != nil {
-		clogger.LogError(err)
+		clogger.Error(err)
 	}
+
+	clogger.Default("default message@@@@@@@@@@@@")
+	clogger.Alert("alert message")
+	clogger.Critical("very critical")
+	clogger.Info("just info")
+	clogger.Emergency("This is emergency. DO NOT ignore!!")
+	clogger.Warning("warning!!")
+	clogger.Notice("just a notice")
+	clogger.Debug("debugging...")
 
 	req := &secretmanagerpb.AccessSecretVersionRequest{
 		Name: "projects/782780515351/secrets/my-secret/versions/2",
